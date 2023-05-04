@@ -1,0 +1,9 @@
+.favouriteButton {
+    border: none;
+    background-color: inherit;
+}
+
+.favouriteButton > img {
+    width: 30px;
+    height: 30px;
+}
