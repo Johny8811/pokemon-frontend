@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { ApolloProvider } from '@apollo/client'
+
 import './index.css';
-import App from './App';
+import { PokemonList } from './modules/pokemonList/PokemonList';
 import reportWebVitals from './reportWebVitals';
+
+import { client } from './apollo/client'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <PokemonList />
+    </ApolloProvider>
   </React.StrictMode>
 );
 
