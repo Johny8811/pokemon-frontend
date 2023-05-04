@@ -1,9 +1,17 @@
+import { useQuery } from '@apollo/client'
+
+import { POKEMONS_LIST } from '../../apollo/queries'
+
 import './PokemonList.css'
 
 export const PokemonList = () => {
-    return (
+  const { data } = useQuery(POKEMONS_LIST)
+
+  return (
       <div>
-          list of pokemons
+        {data?.pokemons.edges.map(p => (
+          <div key={p.id}>{p.name}</div>
+        ))}
       </div>
     )
 }

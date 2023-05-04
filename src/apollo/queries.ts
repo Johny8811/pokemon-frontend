@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client'
+import { gql } from '../__generated__/gql'
 
-export const POKEMONS_LIST = gql`
+export const POKEMONS_LIST = gql(`
     query pokemons {
         pokemons(query: { limit: 20 }) {
             edges {
@@ -12,4 +12,4 @@ export const POKEMONS_LIST = gql`
             }
         }
     }
-`
+`)
