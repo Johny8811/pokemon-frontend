@@ -1,21 +1,21 @@
 .tab {
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #999;
 }
 
 .tab button {
-    float: left;
-    border: none;
-    outline: none;
+    flex-grow: 1;
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
 }
 
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #aaa;
 }
 
 .active {
-    background-color: #999;
+    background-color: #73c1a2;
 }
