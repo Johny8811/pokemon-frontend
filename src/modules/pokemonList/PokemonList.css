@@ -1,0 +1,34 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 50px;
+    max-width: 880px;
+    height: 100vh;
+}
+
+.grid {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid > div {
+    padding: 10px;
+    background-color: #ccc;
+}
+
+.pokemonImage {
+    width: 240px;
+    height: 240px;
+}
+
+.pokemonDescription {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokemonDescription button {
+    cursor: pointer;
+}
