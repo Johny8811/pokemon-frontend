@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ApolloProvider } from '@apollo/client'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom';
 
 import './index.css';
 import { PokemonList } from './modules/pokemonList/PokemonList';
+import { PokemonDetail } from './modules/pokemonDetail/PokemonDetail';
 import reportWebVitals from './reportWebVitals';
 
 import { client } from './apollo/client'
@@ -14,7 +20,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <PokemonList />
+      <Router>
+        <Routes>
+          <Route path="/" element={<PokemonList />} />
+          <Route path="/pokemon/:pokemonId" element={<PokemonDetail />} />
+        </Routes>
+      </Router>
     </ApolloProvider>
   </React.StrictMode>
 );
