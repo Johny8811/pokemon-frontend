@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { POKEMONS_LIST, PokemonListQueryFilter } from '../../apollo/queries'
 import { TabNavigation, ActiveTabState } from '../../uiComponents/tabNavigation/TabNavigation'
+import { Search } from '../../uiComponents/search/Search'
 
 import { FavouriteButton } from './components/FavouriteButton'
 import './PokemonList.css'
@@ -34,6 +35,15 @@ export const PokemonList = () => {
   return (
       <div className="main">
         <TabNavigation activeTab={tabNavigationState} setActiveTab={setTabNavigationState} />
+        <div className="pokemonsfilters">
+          <Search />
+          <select>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="php">PHP</option>
+            <option value="js">JavaScript</option>
+          </select>
+        </div>
         <div className="grid">
           {data?.pokemons.edges.map(p => (
             <div key={p.id}>
