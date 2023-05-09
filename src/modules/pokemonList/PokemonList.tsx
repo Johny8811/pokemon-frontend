@@ -1,20 +1,16 @@
 import { useQuery } from '@apollo/client'
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { POKEMONS_LIST } from '../../apollo/queries'
 import { TabNavigation, ActiveTabState } from '../../components/tabNavigation/TabNavigation'
-import { FavouriteButton } from '../../components/favouriteButton/FavouriteButton'
 
+import { FavouriteButton } from './components/FavouriteButton'
 import './PokemonList.css'
 
 export const PokemonList = () => {
   const { data } = useQuery(POKEMONS_LIST)
   const [tabNavigationState, setTabNavigationState] = useState<ActiveTabState>('all')
-
-  const handleFavouritePokemon = useCallback((id: string) => () => {
-    alert(`Favourite pokemon ${id}`)
-  }, [])
 
   return (
       <div className="main">
@@ -38,8 +34,8 @@ export const PokemonList = () => {
                     </p>
                   </span>
                   <FavouriteButton
-                    isFavourite={p.isFavorite}
-                    onClick={handleFavouritePokemon(p.id)}
+                    pokemonId={p.id}
+                    isFavorite={p.isFavorite}
                   />
                 </div>
               </Link>
