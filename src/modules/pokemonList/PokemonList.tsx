@@ -24,6 +24,10 @@ export const PokemonList = () => {
     },
   })
 
+  const handleSeachChange = (value: string) => {
+
+  }
+
   useEffect(() => {
     if (pokemonListQueryFilter.isFavorite) {
       void refetch({
@@ -36,7 +40,7 @@ export const PokemonList = () => {
       <div className="main">
         <TabNavigation activeTab={tabNavigationState} setActiveTab={setTabNavigationState} />
         <div className="pokemonsfilters">
-          <Search />
+          <Search onChange={handleSeachChange} />
           <select>
             <option value="html">HTML</option>
             <option value="css">CSS</option>
