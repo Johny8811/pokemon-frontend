@@ -1,0 +1,41 @@
+.pokemonDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+
+.pokemonContent {
+  padding: 20px 15px;
+  background-color: #ccc;
+  text-align: center;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.power {
+  margin: 1rem 0;
+  align-self: flex-end;
+}
+
+.properties {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.properties > div {
+  padding: 1rem;
+  border: 1px solid;
+  text-align: center;
+}
