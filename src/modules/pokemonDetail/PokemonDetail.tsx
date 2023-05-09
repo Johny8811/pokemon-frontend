@@ -1,11 +1,14 @@
 import { useParams } from 'react-router-dom'
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
 import { useCallback } from 'react'
 
 import { POKEMON_BY_ID } from '../../apollo/queries'
 import { FavouriteButton } from "../../components/favouriteButton/FavouriteButton";
-import { useFavouritePokemon } from "../../hooks/useFavouritePokemon";
-import { useUnFavouritePokemon } from "../../hooks/useUnFavouritePokemon";
+import { SET_FAVOURITE, SET_UN_FAVOURITE } from "../../apollo/mutations";
+
+import { setFavouritePokemonCache } from './cache/favouritePokemon'
+import { setUnFavouritePokemonCache } from './cache/unFavouritePokemon'
+
 import './PokemonDetail.css'
 
 type PokemonDetailParams = {
@@ -20,8 +23,12 @@ export const PokemonDetail = () => {
     }
   });
 
-  const { setFavourite } = useFavouritePokemon(pokemonId)
-  const { setUnFavourite } = useUnFavouritePokemon(pokemonId)
+  const [setFavourite] = useMutation(SET_FAVOURITE, {
+    update: setFavouritePokemonCache(pokemonId)
+  })
+  const [setUnFavourite] = useMutation(SET_UN_FAVOURITE, {
+    update: setUnFavouritePokemonCache(pokemonId)
+  })
 
   const handleFavouritePokemon = useCallback((id: string) => async () => {
     if (!data?.pokemonById?.isFavorite) {
