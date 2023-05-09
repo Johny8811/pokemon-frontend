@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useMutation } from "@apollo/client";
 
-import { FavouriteButton as FavouriteButtonUI } from '../../../components/favouriteButton/FavouriteButton'
+import { FavouriteButton as FavouriteButtonUI } from '../../../uiComponents/favouriteButton/FavouriteButton'
 import { SET_FAVOURITE, SET_UN_FAVOURITE } from "../../../apollo/mutations";
 
 import { setFavouritePokemonCache } from "../cache/favouritePokemon";

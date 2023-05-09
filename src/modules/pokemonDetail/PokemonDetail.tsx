@@ -3,7 +3,7 @@ import { useQuery, useMutation } from '@apollo/client'
 import { useCallback } from 'react'
 
 import { POKEMON_BY_ID } from '../../apollo/queries'
-import { FavouriteButton } from "../../components/favouriteButton/FavouriteButton";
+import { FavouriteButton } from "../../uiComponents/favouriteButton/FavouriteButton";
 import { SET_FAVOURITE, SET_UN_FAVOURITE } from "../../apollo/mutations";
 
 import { setFavouritePokemonCache } from './cache/favouritePokemon'

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { POKEMONS_LIST } from '../../apollo/queries'
-import { TabNavigation, ActiveTabState } from '../../components/tabNavigation/TabNavigation'
+import { TabNavigation, ActiveTabState } from '../../uiComponents/tabNavigation/TabNavigation'
 
 import { FavouriteButton } from './components/FavouriteButton'
 import './PokemonList.css'
