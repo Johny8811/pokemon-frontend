@@ -1,8 +1,8 @@
 import { gql } from '../__generated__/gql'
 
 export const POKEMONS_LIST = gql(`
-    query pokemons {
-        pokemons(query: { limit: 20 }) {
+    query pokemons($filter: PokemonFilterInput) {
+        pokemons(query: { limit: 20, filter: $filter }) {
             edges {
                 id
                 name
@@ -13,6 +13,11 @@ export const POKEMONS_LIST = gql(`
         }
     }
 `)
+
+export type PokemonListQueryFilter = Partial<{
+  type: string,
+  isFavorite: boolean
+}>
 
 export const POKEMON_BY_ID = gql(`
     query pokemonById($id: ID!) {

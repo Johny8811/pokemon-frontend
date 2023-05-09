@@ -1,9 +1,12 @@
 import { ApolloCache, FetchResult } from "@apollo/client";
 
-import { POKEMONS_LIST } from "../../../apollo/queries";
+import { POKEMONS_LIST, PokemonListQueryFilter } from "../../../apollo/queries";
 import { SetUnFavoriteMutation, PokemonsQuery, PokemonsQueryVariables } from "../../../__generated__/graphql";
 
-export const setUnFavouritePokemonCache = (pokemonId: string) =>
+export const setUnFavouritePokemonCache = (
+  pokemonId: string,
+  pokemonListQueryFilter: PokemonListQueryFilter
+) =>
   (
     cache: ApolloCache<SetUnFavoriteMutation>,
     fetchResult: FetchResult<SetUnFavoriteMutation>
@@ -13,6 +16,9 @@ export const setUnFavouritePokemonCache = (pokemonId: string) =>
       PokemonsQueryVariables
     >({
       query: POKEMONS_LIST,
+      variables: {
+        filter: pokemonListQueryFilter
+      }
     })
 
     if (cachedData?.pokemons && fetchResult.data?.unFavoritePokemon) {

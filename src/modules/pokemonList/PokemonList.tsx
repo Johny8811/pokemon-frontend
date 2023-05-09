@@ -1,16 +1,35 @@
+import { useState, useMemo, useEffect } from "react";
 import { useQuery } from '@apollo/client'
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { POKEMONS_LIST } from '../../apollo/queries'
+import { POKEMONS_LIST, PokemonListQueryFilter } from '../../apollo/queries'
 import { TabNavigation, ActiveTabState } from '../../uiComponents/tabNavigation/TabNavigation'
 
 import { FavouriteButton } from './components/FavouriteButton'
 import './PokemonList.css'
 
 export const PokemonList = () => {
-  const { data } = useQuery(POKEMONS_LIST)
   const [tabNavigationState, setTabNavigationState] = useState<ActiveTabState>('all')
+
+  const pokemonListQueryFilter: PokemonListQueryFilter = useMemo(() => {
+    return {
+      isFavorite: tabNavigationState === 'favorites'
+    }
+  }, [tabNavigationState])
+
+  const { data, refetch } = useQuery(POKEMONS_LIST, {
+    variables: {
+      filter: pokemonListQueryFilter
+    },
+  })
+
+  useEffect(() => {
+    if (pokemonListQueryFilter.isFavorite) {
+      void refetch({
+        filter: pokemonListQueryFilter
+      })
+    }
+  }, [pokemonListQueryFilter])
 
   return (
       <div className="main">
@@ -36,6 +55,7 @@ export const PokemonList = () => {
                   <FavouriteButton
                     pokemonId={p.id}
                     isFavorite={p.isFavorite}
+                    pokemonListQueryFilter={pokemonListQueryFilter}
                   />
                 </div>
               </Link>
