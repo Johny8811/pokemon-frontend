@@ -1,28 +1,43 @@
 import { useParams } from 'react-router-dom'
-import { useLazyQuery } from '@apollo/client'
-import { useCallback, useEffect } from 'react'
+import { useQuery } from '@apollo/client'
+import { useCallback } from 'react'
 
 import { POKEMON_BY_ID } from '../../apollo/queries'
 import { FavouriteButton } from "../../components/favouriteButton/FavouriteButton";
+import { useFavouritePokemon } from "../../hooks/useFavouritePokemon";
+import { useUnFavouritePokemon } from "../../hooks/useUnFavouritePokemon";
 import './PokemonDetail.css'
 
-export const PokemonDetail = () => {
-  const { pokemonId } = useParams<{ pokemonId: string }>();
-  const [getPokemonById, { data, }] = useLazyQuery(POKEMON_BY_ID);
+type PokemonDetailParams = {
+  pokemonId: string
+}
 
-  useEffect(() => {
-    if (pokemonId) {
-      void getPokemonById({
+export const PokemonDetail = () => {
+  const { pokemonId } = useParams<PokemonDetailParams>() as PokemonDetailParams;
+  const { data } = useQuery(POKEMON_BY_ID, {
+    variables: {
+      id: pokemonId
+    }
+  });
+
+  const { setFavourite } = useFavouritePokemon(pokemonId)
+  const { setUnFavourite } = useUnFavouritePokemon(pokemonId)
+
+  const handleFavouritePokemon = useCallback((id: string) => async () => {
+    if (!data?.pokemonById?.isFavorite) {
+      void setFavourite({
+        variables: {
+          id: pokemonId
+        }
+      })
+    } else {
+      void setUnFavourite({
         variables: {
           id: pokemonId
         }
       })
     }
-  }, [pokemonId])
-
-  const handleFavouritePokemon = useCallback((id: string) => async () => {
-    // TODO: add/remove from favourite
-  }, [])
+  }, [pokemonId, data?.pokemonById?.isFavorite])
 
   const pokemonData = data?.pokemonById;
 
