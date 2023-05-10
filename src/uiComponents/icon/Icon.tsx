@@ -1,14 +1,17 @@
+import React from "react";
+
 import grid from '../../assest/grid.png'
 import list from '../../assest/list.png'
 import heart from '../../assest/heart.png'
 import heartFilled from '../../assest/heart-filled.png'
-import React from "react";
+import volume from '../../assest/volume.png'
 
 export enum Icons {
   GRID,
   HEART,
   HEART_FILLED,
-  LIST
+  LIST,
+  VOLUME
 }
 
 const IconSources = {
@@ -16,6 +19,7 @@ const IconSources = {
   [Icons.LIST]: list,
   [Icons.HEART]: heart,
   [Icons.HEART_FILLED]: heartFilled,
+  [Icons.VOLUME]: volume
 }
 
 type Props = {
