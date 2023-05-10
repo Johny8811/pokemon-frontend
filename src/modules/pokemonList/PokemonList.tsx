@@ -26,14 +26,6 @@ export const PokemonList = () => {
   })
 
   useEffect(() => {
-    if (pokemonListQueryFilter.isFavorite) {
-      void refetch({
-        filter: pokemonListQueryFilter
-      })
-    }
-  }, [pokemonListQueryFilter])
-
-  useEffect(() => {
     setSearchPokemon(null)
   }, [pokemonListQueryFilter.isFavorite])
 
