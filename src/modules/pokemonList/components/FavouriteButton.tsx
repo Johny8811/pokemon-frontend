@@ -3,10 +3,9 @@ import { useMutation } from "@apollo/client";
 
 import { FavouriteButton as FavouriteButtonUI } from '../../../uiComponents/favouriteButton/FavouriteButton'
 import { SET_FAVOURITE, SET_UN_FAVOURITE } from "../../../apollo/mutations";
-import { PokemonListQueryFilter } from '../../../apollo/queries'
+import { PokemonListQueryFilter, POKEMONS_LIST } from '../../../apollo/queries'
 
 import { setFavouritePokemonCache } from "../cache/favouritePokemon";
-import { setUnFavouritePokemonCache } from "../cache/unFavouritePokemon";
 
 type Props = {
   isFavorite: boolean,
@@ -20,10 +19,12 @@ export const FavouriteButton = ({
   pokemonListQueryFilter
 }: Props) => {
   const [setFavourite] = useMutation(SET_FAVOURITE, {
-    update: setFavouritePokemonCache(pokemonId, pokemonListQueryFilter)
+    update: setFavouritePokemonCache(pokemonId, pokemonListQueryFilter),
   })
   const [setUnFavourite] = useMutation(SET_UN_FAVOURITE, {
-    update: setUnFavouritePokemonCache(pokemonId, pokemonListQueryFilter)
+    // TODO: investigate: how cache is updated?
+    // update: setUnFavouritePokemonCache(pokemonId, pokemonListQueryFilter)
+    refetchQueries: [POKEMONS_LIST, 'pokemons']
   })
 
   const handleFavouritePokemon = useCallback(() =>  {
