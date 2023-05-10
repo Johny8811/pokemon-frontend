@@ -20,16 +20,18 @@ const IconSources = {
 type Props = {
   icon: Icons,
   alt: string,
-  dimension: number
+  dimension: number,
+  onClick?: () => void
 }
 
-export const Icon = ({ icon, alt, dimension }: Props) => {
+export const Icon = ({ icon, alt, dimension, onClick }: Props) => {
 
   return (
-    <img
-      src={IconSources[icon]}
-      alt={alt}
-      style={{ width: `${dimension}px`, height: `${dimension}px` }}
-    />
+      <img
+        src={IconSources[icon]}
+        alt={alt}
+        style={{ width: `${dimension}px`, height: `${dimension}px` }}
+        onClick={onClick}
+      />
   )
 }
