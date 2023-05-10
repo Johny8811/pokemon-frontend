@@ -12,7 +12,7 @@ type Props = {
 export const SelectInput = ({ value, items, defaultItem, onChange }: Props) => {
   return (
     <select value={value} onChange={onChange} className="selectInput">
-      <option value="" selected>{defaultItem}</option>
+      <option value="">{defaultItem}</option>
       {items.map(t => (
         <option key={t} value={t}>{t}</option>
       ))}

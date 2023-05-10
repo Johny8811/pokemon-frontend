@@ -7,27 +7,20 @@ type Props = {
   onClick: () => void
 }
 
-export const FavouriteButton = ({isFavourite, onClick}: Props) => {
-  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    onClick();
-  }
-
-  return (
-    <button onClick={handleOnClick} className="favouriteButton">
-      {isFavourite ? (
-        <Icon
-          icon={Icons.HEART_FILLED}
-          alt="favourite"
-          dimension={30}
-        />
-      ) : (
-        <Icon
-          icon={Icons.HEART}
-          alt="favourite"
-          dimension={30}
-        />
-      )}
-    </button>
+export const FavouriteButton = ({ isFavourite, onClick }: Props) => {
+  return isFavourite ? (
+    <Icon
+      icon={Icons.HEART_FILLED}
+      alt="favourite"
+      dimension={30}
+      onClick={onClick}
+    />
+  ) : (
+    <Icon
+      icon={Icons.HEART}
+      alt="favourite"
+      dimension={30}
+      onClick={onClick}
+    />
   )
 }

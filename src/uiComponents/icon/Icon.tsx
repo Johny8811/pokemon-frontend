@@ -2,6 +2,7 @@ import grid from '../../assest/grid.png'
 import list from '../../assest/list.png'
 import heart from '../../assest/heart.png'
 import heartFilled from '../../assest/heart-filled.png'
+import React from "react";
 
 export enum Icons {
   GRID,
@@ -25,13 +26,16 @@ type Props = {
 }
 
 export const Icon = ({ icon, alt, dimension, onClick }: Props) => {
-
+  const handleOnClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    e.preventDefault();
+    onClick?.();
+  }
   return (
       <img
         src={IconSources[icon]}
         alt={alt}
         style={{ width: `${dimension}px`, height: `${dimension}px` }}
-        onClick={onClick}
+        onClick={handleOnClick}
       />
   )
 }
