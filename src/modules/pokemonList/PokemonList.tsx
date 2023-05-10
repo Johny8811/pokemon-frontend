@@ -1,10 +1,11 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, ChangeEvent } from "react";
 import { useQuery } from '@apollo/client'
 import { Link } from "react-router-dom";
 
-import { POKEMONS_LIST, PokemonListQueryFilter } from '../../apollo/queries'
+import { POKEMONS_LIST, PokemonListQueryFilter, POKEMON_TYPES } from '../../apollo/queries'
 import { TabNavigation, ActiveTabState } from '../../uiComponents/tabNavigation/TabNavigation'
 import { Search } from '../../uiComponents/search/Search'
+import { SelectInput } from '../../uiComponents/select/SelectInput'
 
 import { FavouriteButton } from './components/FavouriteButton'
 import './PokemonList.css'
@@ -12,18 +13,25 @@ import './PokemonList.css'
 export const PokemonList = () => {
   const [tabNavigationState, setTabNavigationState] = useState<ActiveTabState>('all')
   const [searchPokemon, setSearchPokemon] = useState<string | null>(null)
+  const [selectedPokemonType, setSelectedPokemonType] = useState<string>('')
 
   const pokemonListQueryFilter: PokemonListQueryFilter = useMemo(() => {
     return {
-      isFavorite: tabNavigationState === 'favorites'
+      isFavorite: tabNavigationState === 'favorites',
+      type: selectedPokemonType
     }
-  }, [tabNavigationState])
+  }, [tabNavigationState, selectedPokemonType])
 
-  const { data, refetch } = useQuery(POKEMONS_LIST, {
+  const { data: pokemonsData, refetch } = useQuery(POKEMONS_LIST, {
     variables: {
       filter: pokemonListQueryFilter
     },
   })
+  const { data: pokemonTypesData } = useQuery(POKEMON_TYPES)
+
+  const handleChangePokemonType = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedPokemonType(e.target.value)
+  }
 
   useEffect(() => {
     setSearchPokemon(null)
@@ -40,15 +48,17 @@ export const PokemonList = () => {
         <TabNavigation activeTab={tabNavigationState} setActiveTab={setTabNavigationState} />
         <div className="pokemonsfilters">
           <Search value={searchPokemon} onChange={setSearchPokemon} />
-          <select>
-            <option value="html">HTML</option>
-            <option value="css">CSS</option>
-            <option value="php">PHP</option>
-            <option value="js">JavaScript</option>
-          </select>
+          {pokemonTypesData?.pokemonTypes && (
+            <SelectInput
+              value={selectedPokemonType}
+              items={pokemonTypesData?.pokemonTypes}
+              defaultItem="All"
+              onChange={handleChangePokemonType}
+            />
+          )}
         </div>
         <div className="grid">
-          {data?.pokemons.edges.map(p => (
+          {pokemonsData?.pokemons.edges.map(p => (
             <div key={p.id}>
               <Link to={`/pokemon/${p.id}`}>
                 <img
