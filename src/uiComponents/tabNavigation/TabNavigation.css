@@ -2,7 +2,8 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: #999;
+    background-color: #eee;
+    border: 1px solid #999;
 }
 
 .tab button {
@@ -13,7 +14,7 @@
 }
 
 .tab button:hover {
-    background-color: #aaa;
+    background-color: #ddd;
 }
 
 .active {
