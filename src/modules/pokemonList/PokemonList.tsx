@@ -11,6 +11,7 @@ import './PokemonList.css'
 
 export const PokemonList = () => {
   const [tabNavigationState, setTabNavigationState] = useState<ActiveTabState>('all')
+  const [searchPokemon, setSearchPokemon] = useState<string | null>(null)
 
   const pokemonListQueryFilter: PokemonListQueryFilter = useMemo(() => {
     return {
@@ -24,12 +25,6 @@ export const PokemonList = () => {
     },
   })
 
-  const handleSeachChange = (value: string) => {
-    void refetch({
-      search: value
-    })
-  }
-
   useEffect(() => {
     if (pokemonListQueryFilter.isFavorite) {
       void refetch({
@@ -38,11 +33,21 @@ export const PokemonList = () => {
     }
   }, [pokemonListQueryFilter])
 
+  useEffect(() => {
+    setSearchPokemon(null)
+  }, [pokemonListQueryFilter.isFavorite])
+
+  useEffect(() => {
+    void refetch({
+      search: searchPokemon
+    })
+  }, [searchPokemon])
+
   return (
       <div className="main">
         <TabNavigation activeTab={tabNavigationState} setActiveTab={setTabNavigationState} />
         <div className="pokemonsfilters">
-          <Search onChange={handleSeachChange} />
+          <Search value={searchPokemon} onChange={setSearchPokemon} />
           <select>
             <option value="html">HTML</option>
             <option value="css">CSS</option>
