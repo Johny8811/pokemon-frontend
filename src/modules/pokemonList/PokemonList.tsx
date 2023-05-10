@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { useQuery } from '@apollo/client'
 import { Link } from "react-router-dom";
 
@@ -9,7 +9,10 @@ import { SelectInput } from '../../uiComponents/select/SelectInput'
 import { Icon, Icons } from '../../uiComponents/icon/Icon'
 
 import { FavouriteButton } from './components/FavouriteButton'
+import { useBottomReached } from './hooks/useBottomReached'
 import './PokemonList.css'
+
+const POKEMONS_FETCH_LIMIT = 15
 
 enum Layot {
   LIST,
@@ -29,11 +32,25 @@ export const PokemonList = () => {
     }
   }, [tabNavigationState, selectedPokemonType])
 
-  const { data: pokemonsData, refetch } = useQuery(POKEMONS_LIST, {
+  const { data: pokemonsData, refetch, fetchMore } = useQuery(POKEMONS_LIST, {
     variables: {
+      limit: POKEMONS_FETCH_LIMIT,
       filter: pokemonListQueryFilter
-    },
+    }
   })
+
+  const fetchMorePokemons = useCallback(() => {
+    void fetchMore({
+      variables: {
+        offset: pokemonsData?.pokemons.edges.length || POKEMONS_FETCH_LIMIT,
+      },
+    });
+  }, [pokemonsData?.pokemons.edges])
+
+  useBottomReached({
+    onBottomReached: fetchMorePokemons
+  })
+
   const { data: pokemonTypesData } = useQuery(POKEMON_TYPES)
 
   const handleChangePokemonType = (e: ChangeEvent<HTMLSelectElement>) => {
