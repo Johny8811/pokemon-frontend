@@ -41,3 +41,9 @@ export const POKEMON_BY_ID = gql(`
         }
     }
 `)
+
+export const POKEMON_TYPES = gql(`
+  query PokemonTypes {
+    pokemonTypes
+  }
+`)
