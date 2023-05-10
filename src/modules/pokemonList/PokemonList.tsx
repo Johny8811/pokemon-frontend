@@ -48,6 +48,7 @@ export const PokemonList = () => {
   }, [pokemonsData?.pokemons.edges])
 
   useBottomReached({
+    offsetLength: pokemonsData?.pokemons.edges.length || 0,
     onBottomReached: fetchMorePokemons
   })
 
