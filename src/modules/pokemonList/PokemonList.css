@@ -15,13 +15,22 @@
     margin: 12px 0;
 }
 
+.layout {
+    display: flex;
+}
+
+.layout img {
+    margin-right: 12px;
+}
+
+/* Grid layout */
 .grid {
     display: grid;
-    gap: 1px;
+    gap: 4px;
     grid-template-columns: repeat(3, 1fr);
 }
 
-.grid > div {
+.pokemonItem {
     padding: 10px;
     background-color: #ccc;
 }
@@ -38,4 +47,31 @@
 
 .pokemonDescription button {
     cursor: pointer;
+}
+
+/* List layout */
+.list {
+    display: block;
+    width: 100%;
+}
+
+.list .pokemonItem {
+    margin-bottom: 4px;
+}
+
+.list .pokemonItem a {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list .pokemonImage {
+    width: 80px;
+    height: 80px;
+}
+
+.list .pokemonDescription {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
 }

@@ -11,10 +11,16 @@ import { Icon, Icons } from '../../uiComponents/icon/Icon'
 import { FavouriteButton } from './components/FavouriteButton'
 import './PokemonList.css'
 
+enum Layot {
+  LIST,
+  GRID
+}
+
 export const PokemonList = () => {
   const [tabNavigationState, setTabNavigationState] = useState<ActiveTabState>('all')
   const [searchPokemon, setSearchPokemon] = useState<string | null>(null)
   const [selectedPokemonType, setSelectedPokemonType] = useState<string>('')
+  const [layout, setLayout] = useState<Layot>(Layot.GRID)
 
   const pokemonListQueryFilter: PokemonListQueryFilter = useMemo(() => {
     return {
@@ -57,20 +63,24 @@ export const PokemonList = () => {
               onChange={handleChangePokemonType}
             />
           )}
-          <Icon
-            icon={Icons.GRID}
-            alt="Grid"
-            dimension={30}
-          />
-          <Icon
-            icon={Icons.LIST}
-            alt="List"
-            dimension={30}
-          />
+          <div className="layout">
+            <Icon
+              icon={Icons.GRID}
+              alt="Grid"
+              dimension={30}
+              onClick={() => setLayout(Layot.GRID)}
+            />
+            <Icon
+              icon={Icons.LIST}
+              alt="List"
+              dimension={30}
+              onClick={() => setLayout(Layot.LIST)}
+            />
+          </div>
         </div>
-        <div className="grid">
+        <div className={layout === Layot.GRID ? "grid" : "list"}>
           {pokemonsData?.pokemons.edges.map(p => (
-            <div key={p.id}>
+            <div key={p.id} className="pokemonItem">
               <Link to={`/pokemon/${p.id}`}>
                 <img
                   src={p.image}
