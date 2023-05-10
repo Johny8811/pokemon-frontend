@@ -1,11 +1,12 @@
-import { useState, useMemo, useEffect, ChangeEvent } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { useQuery } from '@apollo/client'
 import { Link } from "react-router-dom";
 
-import { POKEMONS_LIST, PokemonListQueryFilter, POKEMON_TYPES } from '../../apollo/queries'
-import { TabNavigation, ActiveTabState } from '../../uiComponents/tabNavigation/TabNavigation'
+import { POKEMON_TYPES, PokemonListQueryFilter, POKEMONS_LIST } from '../../apollo/queries'
+import { ActiveTabState, TabNavigation } from '../../uiComponents/tabNavigation/TabNavigation'
 import { Search } from '../../uiComponents/search/Search'
 import { SelectInput } from '../../uiComponents/select/SelectInput'
+import { Icon, Icons } from '../../uiComponents/icon/Icon'
 
 import { FavouriteButton } from './components/FavouriteButton'
 import './PokemonList.css'
@@ -56,6 +57,16 @@ export const PokemonList = () => {
               onChange={handleChangePokemonType}
             />
           )}
+          <Icon
+            icon={Icons.GRID}
+            alt="Grid"
+            dimension={30}
+          />
+          <Icon
+            icon={Icons.LIST}
+            alt="List"
+            dimension={30}
+          />
         </div>
         <div className="grid">
           {pokemonsData?.pokemons.edges.map(p => (

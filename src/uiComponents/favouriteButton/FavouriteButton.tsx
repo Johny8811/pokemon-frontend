@@ -1,8 +1,6 @@
 import React from "react";
 
-import heart from '../../assest/heart.png'
-import heartFilled from '../../assest/heart-filled.png'
-import './FavouriteButton.css'
+import { Icon, Icons } from '../../uiComponents/icon/Icon'
 
 type Props = {
   isFavourite: boolean,
@@ -18,14 +16,16 @@ export const FavouriteButton = ({isFavourite, onClick}: Props) => {
   return (
     <button onClick={handleOnClick} className="favouriteButton">
       {isFavourite ? (
-        <img
-          src={heartFilled}
+        <Icon
+          icon={Icons.HEART_FILLED}
           alt="favourite"
+          dimension={30}
         />
       ) : (
-        <img
-          src={heart}
+        <Icon
+          icon={Icons.HEART}
           alt="favourite"
+          dimension={30}
         />
       )}
     </button>
