@@ -1,8 +1,8 @@
 import { gql } from '../__generated__/gql'
 
 export const POKEMONS_LIST = gql(`
-    query pokemons($filter: PokemonFilterInput) {
-        pokemons(query: { limit: 20, filter: $filter }) {
+    query pokemons($filter: PokemonFilterInput, $search: String) {
+        pokemons(query: { limit: 20, filter: $filter, search: $search }) {
             edges {
                 id
                 name

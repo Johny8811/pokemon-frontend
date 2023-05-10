@@ -25,7 +25,9 @@ export const PokemonList = () => {
   })
 
   const handleSeachChange = (value: string) => {
-
+    void refetch({
+      search: value
+    })
   }
 
   useEffect(() => {
