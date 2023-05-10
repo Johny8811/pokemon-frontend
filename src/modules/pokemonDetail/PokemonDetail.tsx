@@ -8,6 +8,7 @@ import { SET_FAVOURITE, SET_UN_FAVOURITE } from "../../apollo/mutations";
 
 import { setFavouritePokemonCache } from './cache/favouritePokemon'
 import { setUnFavouritePokemonCache } from './cache/unFavouritePokemon'
+import { Sound } from './components/Sound'
 
 import './PokemonDetail.css'
 
@@ -60,17 +61,20 @@ export const PokemonDetail = () => {
           <div className="information">
             <div className="description">
               <span>
-                  <div>{pokemonData.name}</div>
-                  <div>{pokemonData.types}</div>
+                  <h3>{pokemonData.name}</h3>
+                  <p>{pokemonData.types}</p>
               </span>
-              <FavouriteButton
-                isFavourite={pokemonData.isFavorite}
-                onClick={handleFavouritePokemon(pokemonData.id)}
-              />
+              <span>
+                <Sound src={pokemonData.sound} />
+                <FavouriteButton
+                  isFavourite={pokemonData.isFavorite}
+                  onClick={handleFavouritePokemon(pokemonData.id)}
+                />
+              </span>
             </div>
             <div className="power">
-              <div>CP: {pokemonData.maxCP}</div>
-              <div>HP: {pokemonData.maxHP}</div>
+              <div>CP: <b>{pokemonData.maxCP}</b></div>
+              <div>HP: <b>{pokemonData.maxHP}</b></div>
             </div>
             <div className="properties">
               <div>

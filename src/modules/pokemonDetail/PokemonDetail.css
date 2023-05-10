@@ -8,9 +8,14 @@
 }
 
 .pokemonContent {
-  padding: 20px 15px;
+  padding: 10px 10px;
   background-color: #ccc;
   text-align: center;
+}
+
+.pokemonContent .pokemonImage {
+  width: 400px;
+  height: 400px;
 }
 
 .information {
