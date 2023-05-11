@@ -9,7 +9,7 @@ export const client = new ApolloClient({
       Query: {
         fields: {
           pokemons: {
-            keyArgs: false,
+            keyArgs: ['query', ['filter', 'search']],
             merge: (existing = { edges: [] }, incoming) => ({
               edges: [
                 ...existing.edges,

@@ -78,7 +78,6 @@ export const PokemonList = () => {
         {pokemonTypesData?.pokemonTypes && (
           <SelectInput
             value={selectedPokemonType}
-            // @ts-ignore
             items={pokemonTypesData?.pokemonTypes}
             defaultItem="All"
             onChange={handleChangePokemonType}
