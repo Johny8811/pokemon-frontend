@@ -29,6 +29,10 @@
   align-items: center;
 }
 
+.description img {
+  margin-left: 10px;
+}
+
 .power {
   margin: 1rem 0;
   align-self: flex-end;
@@ -40,6 +44,7 @@
 }
 
 .properties > div {
+  flex-grow: 1;
   padding: 1rem;
   border: 1px solid;
   text-align: center;

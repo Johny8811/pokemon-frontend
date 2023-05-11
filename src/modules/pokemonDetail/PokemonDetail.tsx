@@ -78,11 +78,11 @@ export const PokemonDetail = () => {
             </div>
             <div className="properties">
               <div>
-                <div>Weight</div>
+                <h4>Weight</h4>
                 {pokemonData.weight.maximum} - {pokemonData.weight.minimum}
               </div>
               <div>
-                <div>Height</div>
+                <h4>Height</h4>
                 {pokemonData.height.maximum} - {pokemonData.height.minimum}
               </div>
             </div>

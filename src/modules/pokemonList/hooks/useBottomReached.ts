@@ -7,7 +7,6 @@ type Props = {
   onBottomReached: () => void
 }
 
-// TODO: improve
 let bottomReached= false
 
 export const useBottomReached = ({ onBottomReached, offsetLength }: Props) => {

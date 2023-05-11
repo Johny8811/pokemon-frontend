@@ -47,6 +47,7 @@ export const PokemonList = () => {
     });
   }, [pokemonsData?.pokemons.edges])
 
+  // TODO: improve hook - remove external dependencies
   useBottomReached({
     offsetLength: pokemonsData?.pokemons.edges.length || 0,
     onBottomReached: fetchMorePokemons
