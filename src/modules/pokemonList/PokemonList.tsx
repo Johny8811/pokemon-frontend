@@ -120,6 +120,7 @@ export const PokemonList = () => {
                   </p>
                 </span>
                 <FavouriteButton
+                  className="likeButton"
                   pokemonId={p.id}
                   isFavorite={p.isFavorite}
                   pokemonListQueryFilter={pokemonListQueryFilter}

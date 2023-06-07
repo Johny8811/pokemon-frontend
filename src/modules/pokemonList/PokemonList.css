@@ -44,7 +44,7 @@
     justify-content: space-between;
 }
 
-.pokemonDescription button {
+.pokemonDescription .likeButton {
     cursor: pointer;
 }
 

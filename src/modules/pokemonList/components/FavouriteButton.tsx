@@ -8,15 +8,17 @@ import { PokemonListQueryFilter, POKEMONS_LIST } from '../../../apollo/queries'
 import { setFavouritePokemonCache } from "../cache/favouritePokemon";
 
 type Props = {
-  isFavorite: boolean,
-  pokemonId: string,
-  pokemonListQueryFilter: PokemonListQueryFilter
+  isFavorite: boolean;
+  pokemonId: string;
+  pokemonListQueryFilter: PokemonListQueryFilter;
+  className?: string;
 }
 
 export const FavouriteButton = ({
   isFavorite,
   pokemonId,
-  pokemonListQueryFilter
+  pokemonListQueryFilter,
+  className,
 }: Props) => {
   const [setFavourite] = useMutation(SET_FAVOURITE, {
     update: setFavouritePokemonCache(pokemonId, pokemonListQueryFilter),
