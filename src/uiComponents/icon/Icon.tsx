@@ -23,13 +23,14 @@ const IconSources = {
 }
 
 type Props = {
-  icon: Icons,
-  alt: string,
-  dimension: number,
-  onClick?: () => void
+  icon: Icons;
+  alt: string;
+  dimension: number;
+  className?: string;
+  onClick?: () => void;
 }
 
-export const Icon = ({ icon, alt, dimension, onClick }: Props) => {
+export const Icon = ({ icon, alt, dimension, onClick, className }: Props) => {
   const handleOnClick = (e: React.MouseEvent<HTMLImageElement>) => {
     e.preventDefault();
     onClick?.();
@@ -39,6 +40,7 @@ export const Icon = ({ icon, alt, dimension, onClick }: Props) => {
         src={IconSources[icon]}
         alt={alt}
         style={{ width: `${dimension}px`, height: `${dimension}px` }}
+        className={className}
         onClick={handleOnClick}
       />
   )

@@ -7,7 +7,7 @@
     max-width: 880px;
 }
 
-.pokemonsfilters {
+.pokemonsFilters {
     display: flex;
     align-items: center;
     width: 100%;
@@ -18,7 +18,7 @@
     display: flex;
 }
 
-.layout img {
+.layout .layoutToggleBtn {
     margin-right: 12px;
 }
 

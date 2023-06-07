@@ -74,7 +74,7 @@ export const PokemonList = () => {
   return (
     <div className="main">
       <TabNavigation activeTab={tabNavigationState} setActiveTab={setTabNavigationState} />
-      <div className="pokemonsfilters">
+      <div className="pokemonsFilters">
         <Search value={searchPokemon} onChange={setSearchPokemon} />
         {pokemonTypesData?.pokemonTypes && (
           <SelectInput
@@ -89,12 +89,14 @@ export const PokemonList = () => {
             icon={Icons.GRID}
             alt="Grid"
             dimension={30}
+            className="layoutToggleBtn"
             onClick={() => setLayout(Layot.GRID)}
           />
           <Icon
             icon={Icons.LIST}
             alt="List"
             dimension={30}
+            className="layoutToggleBtn"
             onClick={() => setLayout(Layot.LIST)}
           />
         </div>
