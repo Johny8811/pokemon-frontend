@@ -10,6 +10,7 @@ import {
 import './index.css';
 import { PokemonList } from './modules/pokemonList/PokemonList';
 import { PokemonDetail } from './modules/pokemonDetail/PokemonDetail';
+import { NoMatchingRoute } from './uiComponents/noMatchRoute/NoMatchRoute';
 import reportWebVitals from './reportWebVitals';
 
 import { client } from './apollo/client'
@@ -24,6 +25,7 @@ root.render(
         <Routes>
           <Route path="/" element={<PokemonList />} />
           <Route path="/pokemon/:pokemonId" element={<PokemonDetail />} />
+          <Route path="*" element={<NoMatchingRoute />} />
         </Routes>
       </Router>
     </ApolloProvider>
